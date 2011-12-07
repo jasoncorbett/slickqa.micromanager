@@ -112,7 +112,7 @@ namespace MicroManager
 		#region Event Handlers
 		private void menuAboutClick(object sender, EventArgs e)
 		{
-			MessageBox.Show("About This Application");
+			MessageBox.Show("Micro Manager remote management service 1.0 (by Jason Corbett)");
 		}
 		
 		private void menuExitClick(object sender, EventArgs e)
@@ -122,7 +122,7 @@ namespace MicroManager
 		
 		private void IconDoubleClick(object sender, EventArgs e)
 		{
-			MessageBox.Show("The icon was double clicked");
+			MessageBox.Show("Micro Manager remote management service 1.0 (by Jason Corbett)");
 		}
 		#endregion
 	}

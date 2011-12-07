@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomUsernamePasswordValidator.cs" />
+    <Compile Include="MMDriveInfo.cs" />
     <Compile Include="MMPath.cs" />
     <Compile Include="MMProcess.cs" />
     <Compile Include="NotificationIcon.cs" />

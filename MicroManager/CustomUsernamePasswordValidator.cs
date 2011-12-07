@@ -22,7 +22,7 @@ namespace MicroManager
 		
 		public override void Validate(string userName, string password)
 		{
-			if(!"growqa".Equals(userName) || !"f00b@r".Equals(password))
+			if(!"mmadmin".Equals(userName) || !"f00b@r".Equals(password))
 				throw new SecurityTokenValidationException("Username or Password unrecognized");
 		}
 	}

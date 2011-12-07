@@ -137,6 +137,60 @@ namespace MicroManager
 			}
 			return path.update();
 		}
+		
+		[WebInvoke(Method="PUT", UriTemplate = "files/content", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		public MMPathWithContent getFileContents(MMPath path)
+		{
+			MMPathWithContent retval = new MMPathWithContent(path.Path);
+			retval.initialize();
+			retval.loadContent();
+			return retval;
+		}
+		
+		[WebInvoke(Method = "POST", UriTemplate = "files/content", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		public MMPathWithContent saveFileContents(MMPathWithContent content)
+		{
+			content.saveContent();
+			MMPathWithContent retval = new MMPathWithContent(content.Path);
+			retval.initialize();
+			retval.loadContent();
+			return retval;			
+		}
+		
+		[WebInvoke(Method = "POST", UriTemplate = "files/mkdir", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		public MMPath createDirectory(MMPath dir)
+		{
+			dir.initialize();
+			if(!dir.Exists)
+				Directory.CreateDirectory(dir.Path);
+			dir.initialize();
+			return dir;
+		}
+		
+		[WebGet(UriTemplate = "env", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		public System.Collections.IDictionary getEnvironment()
+		{
+			return System.Environment.GetEnvironmentVariables();
+		}
+
+		[WebGet(UriTemplate = "disks", ResponseFormat = WebMessageFormat.Json)]
+		[OperationContract]
+		public List<MMDriveInfo> getDrives()
+		{
+			List<MMDriveInfo> retval = new List<MMDriveInfo>();
+			foreach(DriveInfo info in DriveInfo.GetDrives())
+			{
+				if(info.IsReady)
+				{
+					retval.Add(new MMDriveInfo(info));
+				}
+			}
+			return retval;
+		}
 
 	}
 }

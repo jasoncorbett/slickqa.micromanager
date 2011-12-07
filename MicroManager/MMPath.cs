@@ -46,6 +46,10 @@ namespace MicroManager
 				Exists = false;
 			}
 			
+			
+			
+			
+			
 		}
 		
 		public MMPath update()
@@ -55,6 +59,34 @@ namespace MicroManager
 			else if(Type.Equals("DIRECTORY"))
 				Exists = Directory.Exists(Path);
 			return this;
+		}
+	}
+	
+	public class MMPathWithContent : MMPath
+	{
+		public byte[] Content { get; set; }
+		
+		public MMPathWithContent() :
+			   base()
+		{
+		}
+		
+		public MMPathWithContent(String path) :
+			   base(path)
+		{
+		}
+		
+		public void loadContent()
+		{
+			if(File.Exists(Path))
+			{
+				Content = File.ReadAllBytes(Path);
+			}
+		}
+		
+		public void saveContent()
+		{
+			File.WriteAllBytes(Path, Content);
 		}
 	}
 }
